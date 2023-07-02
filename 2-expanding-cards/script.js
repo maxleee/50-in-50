@@ -1,18 +1,27 @@
 const panels = document.querySelectorAll('.panel');
+const buttons = document.querySelectorAll('.panel-button');
 
-panels.forEach(panel => {
-  panel.addEventListener('click', () => {
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
     removeActiveClasses();
-    panel.classList.add('active');
+    button.setAttribute('aria-expanded', true);
     setTimeout(() => {
-      panel.classList.add('visible');
+      button.parentElement.classList.add('visible');
     }, 20);
   });
 });
 
 function removeActiveClasses() {
   panels.forEach(panel => {
-    panel.classList.remove('active');
     panel.classList.remove('visible');
   });
+  buttons.forEach(button => {
+    button.setAttribute('aria-expanded', false);
+  });
 }
+
+// function activePanel(e) {
+//   console.log(e.currentTarget);
+//   removeActiveClasses();
+//   e.currentTarget.setAttribute('aria-expanded');
+// }
