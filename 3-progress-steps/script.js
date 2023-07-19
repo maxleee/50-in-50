@@ -4,6 +4,7 @@ const next = document.querySelector('#next');
 const circles = document.querySelectorAll('.circle');
 
 let currentActive = 1;
+update();
 
 next.addEventListener('click', () => {
   currentActive++;
@@ -45,4 +46,6 @@ function update() {
     next.disabled = false;
     prev.disabled = false;
   }
+
+  document.title = `Step ${currentActive} of ${circles.length} | Progress Steps`;
 }
