@@ -84,6 +84,10 @@ body {
   margin: 0.25rem;
 }
 
+.btn:focus {
+  outline-offset: 2px;
+}
+
 .btn:active {
   transform: scale(0.98);
 }
