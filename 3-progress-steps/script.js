@@ -32,6 +32,26 @@ function update() {
     } else {
       circle.classList.remove('active');
     }
+
+    if (currentActive > index + 1) {
+      if (!circle.querySelector('.inserted-complete')) {
+        circle.insertAdjacentHTML(
+          'afterbegin',
+          "<span class='sr-only inserted-complete'>Completed Step</span>"
+        );
+      }
+    } else {
+      circle.querySelector('.inserted-complete')?.remove();
+    }
+
+    if (currentActive === index + 1) {
+      circle.insertAdjacentHTML(
+        'afterbegin',
+        "<span class='sr-only inserted-current'>Current Step</span>"
+      );
+    } else {
+      circle.querySelector('.inserted-current')?.remove();
+    }
   });
 
   const actives = document.querySelectorAll('.active');
