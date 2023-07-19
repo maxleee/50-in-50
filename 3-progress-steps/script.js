@@ -3,9 +3,11 @@ const prev = document.querySelector('#prev');
 const next = document.querySelector('#next');
 const circles = document.querySelectorAll('.circle');
 
+//initialize
 let currentActive = 1;
 update();
 
+//next button
 next.addEventListener('click', () => {
   currentActive++;
 
@@ -16,6 +18,7 @@ next.addEventListener('click', () => {
   update();
 });
 
+//previous button
 prev.addEventListener('click', () => {
   currentActive--;
 
@@ -26,6 +29,7 @@ prev.addEventListener('click', () => {
 });
 
 function update() {
+  // add/remove active class for visual indication
   circles.forEach((circle, index) => {
     if (currentActive > index) {
       circle.classList.add('active');
@@ -33,6 +37,7 @@ function update() {
       circle.classList.remove('active');
     }
 
+    //add/remove offscreen text to indicate complete and current
     if (currentActive > index + 1) {
       if (!circle.querySelector('.inserted-complete')) {
         circle.insertAdjacentHTML(
@@ -56,8 +61,10 @@ function update() {
 
   const actives = document.querySelectorAll('.active');
 
+  //adjust progress bar length
   progress.style.width = `${((actives.length - 1) / (circles.length - 1)) * 100}%`;
 
+  //manage button states
   if (currentActive === 1) {
     prev.disabled = true;
   } else if (currentActive === circles.length) {
@@ -67,5 +74,6 @@ function update() {
     prev.disabled = false;
   }
 
+  //add step state to title
   document.title = `Step ${currentActive} of ${circles.length} | Progress Steps`;
 }
